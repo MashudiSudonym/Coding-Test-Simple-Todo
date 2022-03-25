@@ -1,21 +1,22 @@
 package c.m.simpletodo.todo.presentation
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import c.m.simpletodo.core.presentation.ui.theme.Red500
-import c.m.simpletodo.core.presentation.ui.theme.White
+import c.m.simpletodo.R
+import c.m.simpletodo.todo.presentation.custom.AppBarWithBackButton
 
 @Composable
 fun DetailScreen(navController: NavController, todoId: Int) {
@@ -26,21 +27,10 @@ fun DetailScreen(navController: NavController, todoId: Int) {
     detailViewModel.getTodoDetail(todoId)
 
     Scaffold(topBar = {
-        TopAppBar(backgroundColor = Red500, elevation = 0.dp) {
-            Row(
-                horizontalArrangement = Arrangement.Start,
-                modifier = Modifier.padding(start = 8.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Arrow Back",
-                    modifier = Modifier.clickable {
-                        navController.popBackStack()
-                    })
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = "Detail", fontWeight = FontWeight.Bold, color = White)
-            }
-        }
+        AppBarWithBackButton(
+            title = stringResource(id = R.string.app_name),
+            navController = navController
+        )
     }) {
         Column(
             modifier = Modifier
