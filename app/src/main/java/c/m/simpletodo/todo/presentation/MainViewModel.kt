@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
     }
 
     private fun getTodosListData() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             getTodosUseCase().onEach { result ->
                 when (result) {
                     is Resource.Error -> {

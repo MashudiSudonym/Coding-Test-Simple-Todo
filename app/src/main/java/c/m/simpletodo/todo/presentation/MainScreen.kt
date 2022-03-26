@@ -18,7 +18,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
-import c.m.simpletodo.todo.presentation.custom.DefaultAppBar
+import c.m.simpletodo.todo.presentation.custom.AppBarDefault
+import c.m.simpletodo.todo.presentation.custom.LoadingIndicator
 
 @Composable
 fun MainScreen(navController: NavController) {
@@ -26,16 +27,16 @@ fun MainScreen(navController: NavController) {
     val todoListState by mainViewModel.todoListState.collectAsState()
 
     Scaffold(topBar = {
-        DefaultAppBar(title = stringResource(id = R.string.app_name))
+        AppBarDefault(title = stringResource(id = R.string.app_name))
     }) {
         Column(
             modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                .padding(vertical = 16.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             when {
-                todoListState.isLoading -> CircularProgressIndicator(
+                todoListState.isLoading -> LoadingIndicator(
                     modifier = Modifier.align(
                         Alignment.CenterHorizontally
                     )

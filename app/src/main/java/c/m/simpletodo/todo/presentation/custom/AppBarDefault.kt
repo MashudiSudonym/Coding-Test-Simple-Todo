@@ -14,7 +14,7 @@ import c.m.simpletodo.core.presentation.ui.theme.Red500
 import c.m.simpletodo.core.presentation.ui.theme.White
 
 @Composable
-fun DefaultAppBar(title: String?) {
+fun AppBarDefault(title: String?) {
     TopAppBar(
         elevation = 6.dp,
         backgroundColor = Red500,

@@ -17,13 +17,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
 import c.m.simpletodo.todo.presentation.custom.AppBarWithBackButton
+import c.m.simpletodo.todo.presentation.custom.LoadingIndicator
 
 @Composable
 fun DetailScreen(navController: NavController, todoId: Int) {
     val detailViewModel: DetailViewModel = hiltViewModel()
-    val detailState by detailViewModel.detailState.collectAsState()
 
-    // Load Data
+    // load data
     detailViewModel.getTodoDetail(todoId)
 
     Scaffold(topBar = {
@@ -34,12 +34,14 @@ fun DetailScreen(navController: NavController, todoId: Int) {
     }) {
         Column(
             modifier = Modifier
-                .padding(top = 16.dp, start = 16.dp, end = 16.dp)
+                .padding(16.dp)
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.Start
         ) {
+            val detailState by detailViewModel.detailState.collectAsState()
+
             when {
-                detailState.isLoading -> CircularProgressIndicator(
+                detailState.isLoading -> LoadingIndicator(
                     modifier = Modifier.align(
                         Alignment.CenterHorizontally
                     )

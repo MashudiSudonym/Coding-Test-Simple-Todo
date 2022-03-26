@@ -19,7 +19,7 @@ class DetailViewModel @Inject constructor(private val getTodoItemUseCase: GetTod
     val detailState: StateFlow<DetailState> = _detailState
 
     fun getTodoDetail(todoId: Int) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             getTodoItemUseCase(todoId = todoId).onEach { result ->
                 when (result) {
                     is Resource.Error -> {
