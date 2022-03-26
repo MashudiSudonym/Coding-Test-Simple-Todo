@@ -1,4 +1,4 @@
-package c.m.simpletodo.todo.presentation.custom
+package c.m.simpletodo.todo.presentation.component
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable

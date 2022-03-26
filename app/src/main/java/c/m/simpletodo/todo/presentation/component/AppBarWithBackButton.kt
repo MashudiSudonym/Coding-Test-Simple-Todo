@@ -1,4 +1,4 @@
-package c.m.simpletodo.todo.presentation.custom
+package c.m.simpletodo.todo.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

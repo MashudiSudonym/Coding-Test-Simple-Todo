@@ -3,7 +3,6 @@ package c.m.simpletodo.todo.presentation
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
-import c.m.simpletodo.todo.presentation.custom.AppBarWithBackButton
-import c.m.simpletodo.todo.presentation.custom.LoadingIndicator
+import c.m.simpletodo.todo.presentation.component.AppBarWithBackButton
+import c.m.simpletodo.todo.presentation.component.LoadingIndicator
 
 @Composable
 fun DetailScreen(navController: NavController, todoId: Int) {

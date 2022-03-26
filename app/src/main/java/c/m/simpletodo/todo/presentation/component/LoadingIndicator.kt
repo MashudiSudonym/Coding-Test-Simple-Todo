@@ -1,8 +1,7 @@
-package c.m.simpletodo.todo.presentation.custom
+package c.m.simpletodo.todo.presentation.component
 
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable

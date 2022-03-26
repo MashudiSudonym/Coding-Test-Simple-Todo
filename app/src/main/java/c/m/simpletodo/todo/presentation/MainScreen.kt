@@ -4,8 +4,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.Divider
+import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -14,12 +14,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
-import c.m.simpletodo.todo.presentation.custom.AppBarDefault
-import c.m.simpletodo.todo.presentation.custom.LoadingIndicator
+import c.m.simpletodo.todo.presentation.component.AppBarDefault
+import c.m.simpletodo.todo.presentation.component.LoadingIndicator
 
 @Composable
 fun MainScreen(navController: NavController) {
@@ -31,7 +33,7 @@ fun MainScreen(navController: NavController) {
     }) {
         Column(
             modifier = Modifier
-                .padding(vertical = 16.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -49,21 +51,33 @@ fun MainScreen(navController: NavController) {
                 else -> {
                     LazyColumn(modifier = Modifier.fillMaxSize()) {
                         this.items(items = todoListState.todoListItem) { item ->
-                            Spacer(modifier = Modifier.height(8.dp))
-                            Column(modifier = Modifier
-                                .clickable {
-                                    navController.navigate("detail/${item.id}") {
-                                        popUpTo(
-                                            "main"
-                                        )
-                                    }
+                            Card(
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .fillMaxWidth()
+                                    .wrapContentHeight()
+                                    .clickable {
+                                        navController.navigate("detail/${item.id}") {
+                                            popUpTo(
+                                                "main"
+                                            )
+                                        }
+                                    },
+                                shape = MaterialTheme.shapes.medium,
+                                elevation = 2.dp
+                            ) {
+                                Column(modifier = Modifier
+                                    .padding(8.dp)
+                                    .fillMaxWidth()) {
+                                    Text(
+                                        text = item.title ?: "",
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                    Text(text = "Status : ${item.completed}")
+                                    Text(text = "User ID: ${item.userId}")
                                 }
-                                .fillMaxWidth()) {
-                                Text(text = item.title ?: "")
-                                Text(text = "Status : ${item.completed}")
-                                Text(text = "User ID: ${item.userId}")
                             }
-                            Divider()
                         }
                     }
                 }
