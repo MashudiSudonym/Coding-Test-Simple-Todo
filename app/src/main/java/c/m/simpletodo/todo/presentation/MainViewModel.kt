@@ -7,6 +7,7 @@ import c.m.simpletodo.todo.domain.use_case.get_todos_use_case.GetTodosUseCase
 import c.m.simpletodo.todo.presentation.state.TodoListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,12 +19,14 @@ class MainViewModel @Inject constructor(
     private val _todoListState = MutableStateFlow(TodoListState())
     val todoListState: StateFlow<TodoListState> = _todoListState.asStateFlow()
 
+    private var getTodosListJob: Job? = null
     init {
         getTodosListData()
     }
 
     private fun getTodosListData() {
-        viewModelScope.launch {
+        getTodosListJob?.cancel()
+        getTodosListJob = viewModelScope.launch(Dispatchers.IO) {
             getTodosUseCase().onEach { result ->
                 when (result) {
                     is Resource.Error -> {

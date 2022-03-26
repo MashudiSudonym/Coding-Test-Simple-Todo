@@ -1,5 +1,7 @@
 package c.m.simpletodo.todo.presentation
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import c.m.simpletodo.core.common.Resource
@@ -8,6 +10,7 @@ import c.m.simpletodo.todo.domain.use_case.get_todo_item_use_case.GetTodoItemUse
 import c.m.simpletodo.todo.presentation.state.DetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,11 +18,15 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel @Inject constructor(private val getTodoItemUseCase: GetTodoItemUseCase) :
     ViewModel() {
+
     private val _detailState = MutableStateFlow(DetailState())
     val detailState: StateFlow<DetailState> = _detailState
 
+    private var getTodoDetailJob: Job? = null
+
     fun getTodoDetail(todoId: Int) {
-        viewModelScope.launch {
+        getTodoDetailJob?.cancel()
+        getTodoDetailJob = viewModelScope.launch(Dispatchers.IO) {
             getTodoItemUseCase(todoId = todoId).onEach { result ->
                 when (result) {
                     is Resource.Error -> {
