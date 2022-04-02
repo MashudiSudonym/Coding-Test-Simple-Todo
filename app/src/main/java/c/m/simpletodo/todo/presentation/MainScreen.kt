@@ -20,17 +20,16 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
-import c.m.simpletodo.todo.presentation.component.AppBarDefault
-import c.m.simpletodo.todo.presentation.component.LoadingIndicator
+import c.m.simpletodo.core.presentation.component.AppBarDefault
+import c.m.simpletodo.core.presentation.component.LoadingIndicator
 
 @Composable
 fun MainScreen(navController: NavController) {
     val mainViewModel: MainViewModel = hiltViewModel()
     val todoListState by mainViewModel.todoListState.collectAsState()
 
-    Scaffold(topBar = {
+    Column {
         AppBarDefault(title = stringResource(id = R.string.app_name))
-    }) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)

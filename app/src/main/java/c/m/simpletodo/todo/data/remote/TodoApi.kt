@@ -1,4 +1,4 @@
-package c.m.simpletodo.core.data.remote
+package c.m.simpletodo.todo.data.remote
 
 import c.m.simpletodo.todo.data.remote.dto.TodoListDTOItem
 import retrofit2.http.GET

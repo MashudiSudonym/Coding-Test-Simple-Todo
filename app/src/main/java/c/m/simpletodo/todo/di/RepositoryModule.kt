@@ -1,6 +1,6 @@
 package c.m.simpletodo.todo.di
 
-import c.m.simpletodo.core.data.remote.TodoApi
+import c.m.simpletodo.todo.data.remote.TodoApi
 import c.m.simpletodo.todo.data.repository.TodoRepositoryImpl
 import c.m.simpletodo.todo.domain.repository.TodoRepository
 import dagger.Module

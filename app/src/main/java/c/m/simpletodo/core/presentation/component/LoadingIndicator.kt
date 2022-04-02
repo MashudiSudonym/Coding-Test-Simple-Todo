@@ -1,4 +1,4 @@
-package c.m.simpletodo.todo.presentation.component
+package c.m.simpletodo.core.presentation.component
 
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable

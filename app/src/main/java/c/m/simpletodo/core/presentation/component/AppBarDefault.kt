@@ -1,4 +1,4 @@
-package c.m.simpletodo.todo.presentation.component
+package c.m.simpletodo.core.presentation.component
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.TopAppBar

@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import c.m.simpletodo.R
-import c.m.simpletodo.todo.presentation.component.AppBarWithBackButton
-import c.m.simpletodo.todo.presentation.component.LoadingIndicator
+import c.m.simpletodo.core.presentation.component.AppBarWithBackButton
+import c.m.simpletodo.core.presentation.component.LoadingIndicator
 
 @Composable
 fun DetailScreen(navController: NavController, todoId: Int) {

@@ -2,7 +2,7 @@ package c.m.simpletodo.core.di
 
 import c.m.simpletodo.BuildConfig
 import c.m.simpletodo.core.common.Constants
-import c.m.simpletodo.core.data.remote.TodoApi
+import c.m.simpletodo.todo.data.remote.TodoApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,16 +31,5 @@ object NetworkModule {
         OkHttpClient
             .Builder()
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideTodoApi(okHttpClient: OkHttpClient, baseUrlApi: String): TodoApi {
-        return Retrofit.Builder()
-            .baseUrl(baseUrlApi)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(TodoApi::class.java)
     }
 }
