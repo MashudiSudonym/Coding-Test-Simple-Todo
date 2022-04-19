@@ -5,9 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -15,12 +13,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideTodoApi(okHttpClient: OkHttpClient, baseUrlApi: String): TodoApi {
-        return Retrofit.Builder()
-            .baseUrl(baseUrlApi)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build()
-            .create(TodoApi::class.java)
+    fun provideTodoApi(retrofit: Retrofit): TodoApi {
+        return retrofit.create(TodoApi::class.java)
     }
 }

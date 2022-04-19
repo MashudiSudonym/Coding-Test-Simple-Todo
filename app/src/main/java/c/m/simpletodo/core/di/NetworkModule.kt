@@ -32,4 +32,14 @@ object NetworkModule {
             .Builder()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideRetrofitBuilder(okHttpClient: OkHttpClient, baseUrlApi: String): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(baseUrlApi)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+    }
 }
